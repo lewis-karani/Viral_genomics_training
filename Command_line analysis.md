@@ -10,15 +10,18 @@ wget https://github.com/artic-network/artic-ncov2019/blob/master/primer_schemes/
 ```
 
 ## Install workflow toolkits
-### Tools required: porechop, trimmomatic, ivar, medaka [tabix, pbgzip, bcftools, samtools, minimap2]
+### Tools required: [porechop, trimmomatic], , medaka {ivar, tabix, pbgzip, bcftools, samtools, minimap2}
 ```
 sudo apt update
 sudo apt-get install python3-pip
 sudo apt-get install build-essential
 pip install --upgrade pip
 pip install --upgrade pip setuptools
-conda create -n SARS python=3.10
-conda activate SARS
+conda create -n trimming
+conda activate trimming
+conda install [porechop, trimmomatic] -c bioconda
+conda create -n medaka python=3.10
+conda activate medaka
 pip install medaka
 conda install {required tools} -c bioconda
 
