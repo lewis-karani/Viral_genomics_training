@@ -60,7 +60,7 @@ samtools index file_primertrim_sorted.bam
 -d 0: This option sets the minimum read coverage depth for a position to be considered. In this case, setting -d 0 means that all positions, even those with zero coverage, will be included in the pileup output.
 -Q 0: This option sets the minimum base quality for a base to be considered. By setting -Q 0, you include all bases regardless of their base quality scores.
 ```
-samtools mpileup -aa -A -d 0 -Q 0 file_primertrim_sorted.bam | ivar consensus -p file_consensus.fa -q 0 -t 0.5 -c 0.2 -m 0
+samtools mpileup -aa -A -d 0 -Q 0 file_primertrim_sorted.bam | ivar consensus -p file_consensus.fa -q 0 -t 0 -c 0 -m 0
 
 ```
 ### Polish consensus genome using medaka
