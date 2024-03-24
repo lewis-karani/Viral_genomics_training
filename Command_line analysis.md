@@ -52,8 +52,8 @@ Then sort and index with samtools
 samtools view -bS file_aln.sam > file_aln.bam
 samtools sort file_aln.bam > file_sorted.bam
 ivar trim -e -i file_sorted.bam -b ./nCoV-2019.primer.bed -p file_primertrim.bam 
-samtools sort file_primertrim.bam -o file_primertrim_sorted
-samtools index file_primertrim_sorted. bam
+samtools sort file_primertrim.bam -o file_primertrim_sorted.bam
+samtools index file_primertrim_sorted.bam
 ```
 ### Create consensus genome using ivar; usually samtools mpileup output is piped to ivar consensus
 -aa: This option tells samtools mpileup to output all positions, including those with zero coverage. Without this option, samtools mpileup would only output positions covered by reads
@@ -61,7 +61,7 @@ samtools index file_primertrim_sorted. bam
 -d 0: This option sets the minimum read coverage depth for a position to be considered. In this case, setting -d 0 means that all positions, even those with zero coverage, will be included in the pileup output.
 -Q 0: This option sets the minimum base quality for a base to be considered. By setting -Q 0, you include all bases regardless of their base quality scores.
 ```
- samtools mpileup -aa -A -d 0 -Q 0 file_primertrim_sorted.bam | ivar consensus -p file_consensus.fa
+ samtools mpileup -aa -A -d 0 -Q 0 file_primertrim_sorted.bam | ivar consensus -q 0 -t 0.5 -c 0.2 -p file_consensus.fa
 
 ```
 ### Polish consensus genome using medaka
