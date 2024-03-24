@@ -1,15 +1,16 @@
 ## Training Dataset
-### Forward reads
+### Reference genome
 ```
-wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR209/005/ERR2093245/ERR2093245_1.fastq.gz
+wget -O my_sequence.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_045512.2&rettype=fasta&retmode=text"
+
 ```
 ### Reverse reads
 ```
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR209/005/ERR2093245/ERR2093245_2.fastq.gz
 ```
 
-## Install Sra-toolkit
-### Fetch the tar file from the canonical location at NCBI:
+## Install workflow toolkits
+### Tools required: porechop, trimmomatic, minimap2, samtools, ivar, medaka [tabix, pbgzip, bbtools, samtools, ]
 ```
 wget --output-document sratoolkit.tar.gz https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
 ```
