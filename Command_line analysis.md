@@ -10,7 +10,7 @@ wget https://github.com/artic-network/artic-ncov2019/blob/master/primer_schemes/
 ```
 
 ## Install workflow toolkits
-### Tools required: porechop, trimmomatic, minimap2, samtools, ivar, medaka [tabix, pbgzip, bcftools, samtools, ]
+### Tools required: porechop, trimmomatic, ivar, medaka [tabix, pbgzip, bcftools, samtools, minimap2]
 ```
 sudo apt update
 sudo apt-get install python3-pip
