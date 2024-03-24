@@ -9,13 +9,9 @@ dependencies:
   - medaka
   - minimap2
   - ivar
-  - igv
   - bcftools
   - samtools
-  - bwa
   - tabix
   - pbgzip
-  - fastp
-  - fastqc
-  - mafft
-  - Iqtree
+  
+  
