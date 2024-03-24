@@ -41,7 +41,7 @@ trimmomatic SE -threads 23 -phred33 file_arm.fastq SLIDINGWINDOW:50:10 MINLEN:10
 ### Map sequences to reference: 
 -ax map-ont: Specifies the mapping mode suitable for long reads
 ```
-minimap2 -ax map-ont ./reference.fasta file_arm.fastq -o file_aln.sam
+minimap2 -ax map-ont ./reference.fasta file_arm.fastq -o file_aln.bam
 
 ```
 ### 
@@ -49,7 +49,6 @@ Use samtools to convert the sam to bam, then sort the reads
 Use ivar to trim primers from your sequencing reads(primer bed file used depends on the primer vesrion used to sequence)
 Then sort and index with samtools
 ```
-samtools view -bS file_aln.sam > file_aln.bam
 samtools sort file_aln.bam > file_sorted.bam
 ivar trim -e -i file_sorted.bam -b ./nCoV-2019.primer.bed -p file_primertrim.bam 
 samtools sort file_primertrim.bam -o file_primertrim_sorted.bam
@@ -66,5 +65,8 @@ samtools index file_primertrim_sorted.bam
 ```
 ### Polish consensus genome using medaka
 ```
-medaka consensus file_consensus.fa file_polished.fasta  -model r941_min_high_g360 -batch 200 -threads 4
+mkdir -p ./medaka_output
+medaka consensus file_primertrim_sorted.bam medaka_output/filename.hdf  --model r941_min_high_g360 --batch 200 --threads 4
+medaka stitch medaka_output/filename.hdf file_consensus.fa medaka_output/filename.fasta
+
 
