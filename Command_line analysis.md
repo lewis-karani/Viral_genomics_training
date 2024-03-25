@@ -28,20 +28,20 @@ conda install {required tools} -c bioconda
 ```
 ### Trim adapters from the reads
 ```
-porechop -i file.fastq -o file_arm.fastq
+porechop -i file.fastq -o file_arm.fastq.gz
 ```
 ### Trimmomatic is a widely used tool in bioinformatics for trimming and filtering raw sequencing reads
 It calculates the average quality score in a sliding window of a specified size along each read and trims bases from the end of the read if the average quality score falls below a certain threshold
 the SLIDINGWINDOW option is used with the following syntax: SLIDINGWINDOW:<windowSize>:<requiredQuality>
 SE indicates that you're processing single-end reads, -phred33 specifies the quality encoding of the input FASTQ file
 ```
-trimmomatic SE -threads 23 -phred33 file_arm.fastq SLIDINGWINDOW:50:10 MINLEN:100
+trimmomatic SE -threads 23 -phred33 file_arm.fastq.gz file_trm.fastq.gz SLIDINGWINDOW:50:10 MINLEN:100
 
 ```
 ### Map sequences to reference: 
 -ax map-ont: Specifies the mapping mode suitable for long reads
 ```
-minimap2 -ax map-ont ./reference.fasta file_arm.fastq -o file_aln.bam
+minimap2 -ax map-ont ./reference.fasta file_trm.fastq.gz -o file_aln.bam
 
 ```
 ### 
