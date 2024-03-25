@@ -1,7 +1,7 @@
 ## Training Dataset
 ### Reference genome
 ```
-wget -O my_sequence.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_045512.2&rettype=fasta&retmode=text"
+wget -O reference.fasta "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_045512.2&rettype=fasta&retmode=text"
 
 ```
 ### V3 primer schemes: https://github.com/artic-network/artic-ncov2019/tree/master/primer_schemes/nCoV-2019
