@@ -20,8 +20,8 @@ pip install --upgrade pip setuptools
 conda create -n trimming
 conda activate trimming
 conda install [porechop, trimmomatic] -c bioconda
-conda create -n medaka python=3.10
-conda activate medaka
+conda create -n readmapping python=3.10
+conda activate readmapping
 pip install medaka
 conda install {required tools} -c bioconda
 
@@ -70,8 +70,4 @@ mkdir -p ./medaka_output
 medaka consensus file_primertrim_sorted.bam medaka_output/filename.hdf  --model r941_min_high_g360 --batch 200 --threads 2
 medaka stitch medaka_output/filename.hdf medaka_output/filename.polished.fasta
 ```
-Alternatively, use Medaka to call the consensus genome
-```
-medaka_consensus -i file.fastq -d file_consensus.fa  -o medaka_output -t 4 -m r941_min_high_g360
-```
-When medaka_consensus has finished running, the consensus will be saved to output_directory/consensus.fasta.
+
