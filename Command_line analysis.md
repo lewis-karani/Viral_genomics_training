@@ -41,7 +41,7 @@ trimmomatic SE -threads 23 -phred33 file_arm.fastq.gz file_trm.fastq.gz SLIDINGW
 ### Map sequences to reference: 
 -ax map-ont: Specifies the mapping mode suitable for long reads
 ```
-minimap2 -ax map-ont ./reference.fasta file_trm.fastq.gz -o file_aln.bam
+minimap2 -ax map-ont ./reference.fasta file_trm.fastq.gz -o file_aln.sam
 
 ```
 ### 
@@ -49,6 +49,7 @@ Use samtools to convert the sam to bam, then sort the reads
 Use ivar to trim primers from your sequencing reads(primer bed file used depends on the primer vesrion used to sequence)
 Then sort and index with samtools
 ```
+samtools view bS file_aln.sam > file_aln.bam
 samtools sort file_aln.bam > file_sorted.bam
 ivar trim -e -i file_sorted.bam -b ./nCoV-2019.primer.bed -p file_primertrim.bam 
 samtools sort file_primertrim.bam -o file_primertrim_sorted.bam
@@ -60,13 +61,17 @@ samtools index file_primertrim_sorted.bam
 -d 0: This option sets the minimum read coverage depth for a position to be considered. In this case, setting -d 0 means that all positions, even those with zero coverage, will be included in the pileup output.
 -Q 0: This option sets the minimum base quality for a base to be considered. By setting -Q 0, you include all bases regardless of their base quality scores.
 ```
-samtools mpileup -aa -A -d 0 -Q 0 file_primertrim_sorted.bam | ivar consensus -p file_consensus.fa -q 0 -t 0 -c 0 -m 0
+samtools mpileup -aa -A -d 0 -Q 0 file_primertrim_sorted.bam | ivar consensus -p file_consensus.fa -q 8 -m 10
 
 ```
 ### Polish consensus genome using medaka
 ```
 mkdir -p ./medaka_output
-medaka consensus file_primertrim_sorted.bam medaka_output/filename.hdf  --model r941_min_high_g360 --batch 200 --threads 4
-medaka stitch medaka_output/filename.hdf file_consensus.fa medaka_output/filename.fasta
-
-
+medaka consensus file_primertrim_sorted.bam medaka_output/filename.hdf  --model r941_min_high_g360 --batch 200 --threads 2
+medaka stitch medaka_output/filename.hdf medaka_output/filename.polished.fasta
+```
+Alternatively, use Medaka to call the consensus genome
+```
+medaka_consensus -i file.fastq -d file_consensus.fa  -o medaka_output -t 4 -m r941_min_high_g360
+```
+When medaka_consensus has finished running, the consensus will be saved to output_directory/consensus.fasta.
