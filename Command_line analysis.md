@@ -14,15 +14,20 @@ wget https://github.com/artic-network/artic-ncov2019/blob/master/primer_schemes/
 ```
 sudo apt update
 sudo apt-get install python3-pip
+conda create -n trimming
+conda activate trimming
+conda install [porechop, trimmomatic] -c bioconda -c conda-forge
+conda create -n readmapping python=3.10
+conda activate readmapping
 sudo apt-get install build-essential
 pip install --upgrade pip
 pip install --upgrade pip setuptools
-conda create -n trimming
-conda activate trimming
-conda install [porechop, trimmomatic] -c bioconda
-conda create -n readmapping python=3.10
-conda activate readmapping
 pip install medaka
+```
+ or
+ 
+ ```
+conda install medaka -c bioconda -c conda-forge
 conda install {required tools} -c bioconda
 
 ```
