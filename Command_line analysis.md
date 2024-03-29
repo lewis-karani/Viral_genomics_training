@@ -76,3 +76,11 @@ medaka consensus file_primertrim_sorted.bam medaka_output/filename.hdf  --model 
 medaka stitch medaka_output/filename.hdf medaka_output/filename.polished.fasta
 ```
 
+References:
+https://github.com/timflutre/trimmomatic
+https://github.com/rrwick/Porechop
+https://github.com/nanoporetech/medaka
+https://github.com/andersen-lab/ivar
+https://github.com/samtools/htslib
+https://github.com/samtools/bcftools
+https://github.com/lh3/minimap2
