@@ -22,12 +22,7 @@ conda activate readmapping
 sudo apt-get install build-essential
 pip install --upgrade pip
 pip install --upgrade pip setuptools
-pip install medaka
-```
- or
- 
- ```
-conda install medaka -c bioconda -c conda-forge
+pip install medaka #or# conda install medaka -c bioconda -c conda-forge
 conda install {required tools} -c bioconda
 
 ```
