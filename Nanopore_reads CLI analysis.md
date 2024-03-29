@@ -77,6 +77,7 @@ medaka stitch medaka_output/filename.hdf medaka_output/filename.polished.fasta
 ```
 
 References:
+
 https://github.com/timflutre/trimmomatic
 
 https://github.com/rrwick/Porechop
