@@ -1,17 +1,20 @@
-name: covmap-bsl
+name: malaria-mdr
 channels:
   - conda-forge
   - bioconda
   - defaults
+  - qiime
 dependencies:
   - trimmomatic
-  - porechop
-  - medaka
+  - fastqc
+  - gatk
   - minimap2
   - ivar
   - bcftools
   - samtools
   - tabix
   - pbgzip
+  - bwa-mem
+  - qiime
   
   
